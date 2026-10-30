@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tax Atlas</title><meta name="description" content="Confronto delle aliquote fiscali di 133 giurisdizioni, con controllo qualità dei dati.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#0B0D10;--surface:#15181C;--raised:#1B1F24;--line:#2E3238;--line-brass:#4A3E23;--ink:#EDE6D8;--dim:#97907F;--faint:#5C574C;--brass:#C9A24B;--soft:#9C824A;--oxblood:#7A2430;
+--d:'Poiret One','Copperplate',serif;--b:'Cormorant Garamond',Georgia,serif;--mo:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;border-radius:0}
+body{background:var(--ground);color:var(--ink);font:400 19px/1.5 var(--b);-webkit-font-smoothing:antialiased}
+.w{max-width:1120px;margin:auto;padding:56px 16px 64px}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding-bottom:40px}
+.sw{width:120px;height:120px;position:relative;display:grid;place-items:center}
+.sun{width:100%;height:100%;border-radius:50%;background:repeating-conic-gradient(var(--soft) 0deg 3deg,transparent 3deg 15deg);-webkit-mask:radial-gradient(circle,black 30%,transparent 68%);mask:radial-gradient(circle,black 30%,transparent 68%);opacity:.7}
+.core{position:absolute;width:34px;height:34px;border:1px solid var(--brass);transform:rotate(45deg)}
+@media(prefers-reduced-motion:no-preference){.sun{animation:spin 90s linear infinite}}@keyframes spin{to{transform:rotate(360deg)}}
+.eb{font:400 11.5px var(--mo);letter-spacing:.28em;text-transform:uppercase;color:var(--brass)}
+h1{font:400 clamp(2.6rem,7vw,4.4rem)/1.1 var(--d);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+h2{font:400 22px var(--d);letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+.lead{font-style:italic;font-size:22px;line-height:1.45;color:var(--dim);max-width:46ch;text-wrap:balance}section .lead{font-size:20px;max-width:none;margin:0 0 16px}
+.cr{height:14px;background-image:linear-gradient(135deg,transparent 47%,var(--brass) 47%,var(--brass) 53%,transparent 53%),linear-gradient(45deg,transparent 47%,var(--brass) 47%,var(--brass) 53%,transparent 53%);background-size:22px 14px;background-repeat:repeat-x;background-position:center;opacity:.55;margin-bottom:32px}
+.m{font:400 11px var(--mo);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:28px}
+.c{background:var(--raised);border:1px solid var(--line);padding:16px 18px}
+.kp .c,.st{clip-path:polygon(16px 0,calc(100% - 16px) 0,100% 16px,100% calc(100% - 16px),calc(100% - 16px) 100%,16px 100%,0 calc(100% - 16px),0 16px)}
+.kp .c{text-align:center}.n{font:400 36px/1.2 var(--d);letter-spacing:.04em;color:var(--ink);margin-top:4px}.kp .c:last-child .n{color:var(--brass)}
+nav{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:20px;border-bottom:1px solid var(--line)}
+nav button,.bt{background:none;border:0;color:var(--dim);padding:10px 16px;font:400 11.5px var(--mo);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-bottom:1px solid transparent;margin-bottom:-1px}
+nav button[aria-selected=true]{color:var(--brass);border-bottom-color:var(--brass)}.bt{border:1px solid var(--line-brass);color:var(--brass);margin-top:8px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,tr:focus-visible{outline:1px solid var(--brass);outline-offset:3px}
+input,select{background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:11px 12px;font:400 19px var(--b);width:100%}input::placeholder{color:var(--dim)}
+.tw{overflow-x:auto;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:760px}
+th{font:400 10.5px var(--mo);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:right;padding:12px 10px;border-bottom:1px solid var(--line-brass);cursor:pointer;white-space:nowrap;background:var(--surface);position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;font:400 13px var(--mo);font-variant-numeric:tabular-nums}td:first-child{font:500 18px var(--b)}
+tbody tr{cursor:pointer}tbody tr:hover{background:var(--surface)}
+.na{color:var(--dim)}.w0{color:var(--ink)}.fl{color:var(--soft);font-size:16px;line-height:0}
+.tr{height:3px;background:var(--line);margin:4px 0 11px}.bar{height:3px;background:var(--brass)}.bar.it{background:var(--dim)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.row>*{flex:1 1 200px}
+.src{font-size:17px;color:var(--dim);margin-bottom:9px}
+dialog{background:var(--surface);color:var(--ink);border:1px solid var(--line-brass);padding:24px;max-width:640px;width:calc(100% - 32px)}dialog::backdrop{background:#000b}
+ul{padding-left:18px}li{margin-bottom:5px}.c li,.c ul{color:var(--dim)}.c b{color:var(--ink);font-weight:600}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font:400 11px/1.6 var(--mo);letter-spacing:.04em;color:var(--dim)}
+</style></head><body><div class="w">
+<header class="hero"><div class="sw"><div class="sun"></div><div class="core"></div></div><p class="eb">Fiscalità internazionale &middot; 133 giurisdizioni</p><h1>Tax Atlas</h1><p class="lead">Aliquote societarie, personali, IVA e ritenute da 133 schede Deloitte International Tax Highlights, rese confrontabili e sottoposte a controllo qualità.</p></header><div class="cr"></div>
+<div class="kp" id="kp"></div>
+<nav role="tablist"><button data-t="ex" aria-selected="true">Esplora</button><button data-t="co">Confronta</button><button data-t="qc">Controllo dati</button><button data-t="me">Metodo</button></nav>
+<section id="ex"><div class="row"><input id="q" placeholder="Cerca un paese" aria-label="Cerca un paese"><select id="fl" aria-label="Filtro"><option value="">Tutte le giurisdizioni</option><option value="ok">Solo senza segnalazioni</option><option value="flag">Solo con segnalazioni</option><option value="old">Edizioni precedenti al 2026</option></select></div>
+<div class="tw"><table><thead><tr id="hd"></tr></thead><tbody id="tb"></tbody></table></div><p class="src" style="margin-top:8px">Clicca una riga per vedere il testo della fonte. <span class="fl">•</span> indica una segnalazione del controllo dati.</p></section>
+<section id="co" hidden><p class="lead" >Scegli fino a tre paesi: vengono confrontati con l'Italia.</p><div class="row"><select id="a" aria-label="Paese 1"></select><select id="b" aria-label="Paese 2"></select><select id="c" aria-label="Paese 3"></select></div><div class="g" id="cmp"></div></section>
+<section id="qc" hidden></section>
+<section id="me" hidden><div class="g"><div class="c"><h2>Come funziona</h2><ul><li>Lettura automatica di 133 PDF con uno script scritto con l'AI.</li><li>Estrazione delle tabelle delle aliquote per ogni giurisdizione.</li><li>Controlli di completezza, coerenza e plausibilità su ogni scheda.</li><li>Lettura manuale dei casi che lo script non risolveva.</li></ul></div><div class="c"><h2>Come leggere i numeri</h2><ul><li><b>Società:</b> aliquota principale in tabella. Se la cella ne riporta più di una, la più alta.</li><li><b>Persone fisiche:</b> aliquota marginale massima.</li><li><b>Ritenute:</b> valore più alto tra quelli verso non residenti.</li><li>Le imposte locali possono non essere incluse: vedi la segnalazione del paese.</li><li>Ogni scheda riporta l'edizione della fonte: non tutte sono del 2026.</li></ul></div></div></section>
+<footer>Progetto personale di Gennaro Pancia, realizzato con l'AI. Non affiliato a Deloitte. Fonte: Deloitte International Tax Highlights. Dati a solo scopo dimostrativo: non è consulenza fiscale, verifica sempre le fonti ufficiali.</footer></div>
+<dialog id="dl"></dialog>
+<script>
+const D=/*DATA*/[];
+const C=[['name','Paese'],['year','Ed.'],['cit','Società'],['pit_top','Persone'],['vat','IVA/GST'],['wht_div','Rit. dividendi'],['wht_int','Rit. interessi'],['wht_roy','Rit. royalties']];
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const fmt=v=>v==null?'<span class="na">n/d</span>':(+v.toFixed(2))+'%';
+let sk='name',dir=1;
+$('#hd').innerHTML=C.map(c=>`<th data-k="${c[0]}" scope="col">${c[1]}</th>`).join('');
+const med=k=>{const a=D.map(r=>r[k]).filter(v=>v!=null&&v>0).sort((x,y)=>x-y);return a[a.length>>1]};
+const fl=D.filter(r=>r.flags.length).length,old=D.filter(r=>r.year<2026).length;
+$('#kp').innerHTML=[['Giurisdizioni',D.length],['Mediana società',med('cit')+'%'],['Mediana IVA',med('vat')+'%'],['Da verificare',fl]].map(x=>`<div class="c"><div class="m">${x[0]}</div><div class="n">${x[1]}</div></div>`).join('');
+function draw(){const q=$('#q').value.toLowerCase(),f=$('#fl').value;let r=D.filter(x=>x.name.toLowerCase().includes(q)&&(!f||(f=='ok'&&!x.flags.length)||(f=='flag'&&x.flags.length)||(f=='old'&&x.year<2026)));
+r.sort((a,b)=>{const x=a[sk],y=b[sk];if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*dir});
+$('#tb').innerHTML=r.map(x=>`<tr tabindex="0" data-id="${x.id}"><td>${esc(x.name)}${x.flags.length?' <span class="fl" title="Segnalazioni">•</span>':''}</td><td>${x.year}</td>${['cit','pit_top','vat','wht_div','wht_int','wht_roy'].map(k=>`<td class="${x[k]===0?'w0':''}">${fmt(x[k])}</td>`).join('')}</tr>`).join('')}
+$('#hd').onclick=e=>{const k=e.target.dataset.k;if(!k)return;dir=sk==k?-dir:1;sk=k;draw()};$('#q').oninput=draw;$('#fl').onchange=draw;
+function open_(id){const r=D.find(x=>x.id==id),L=[['Società',r.cit_raw],['Plusvalenze società',r.cgt_raw],['Persone fisiche',r.pit_raw],['IVA/GST',r.vat_raw],['Ritenuta dividendi',r.wht_div_raw],['Ritenuta interessi',r.wht_int_raw],['Ritenuta royalties',r.wht_roy_raw]];
+$('#dl').innerHTML=`<h2>${esc(r.name)}</h2><div class="m" style="margin-bottom:12px">Edizione ${r.year}${r.updated?' | '+esc(r.updated):''}</div>${L.map(l=>`<div class="m">${l[0]}</div><div class="src">${esc(l[1])||'Non presente nella fonte'}</div>`).join('')}${r.flags.length?`<div class="m">Segnalazioni</div><ul class="src">${r.flags.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:''}<button class="bt" onclick="this.closest('dialog').close()">Chiudi</button>`;$('#dl').showModal()}
+$('#tb').onclick=e=>{const t=e.target.closest('tr');t&&open_(t.dataset.id)};$('#tb').onkeydown=e=>{if(e.key=='Enter'){const t=e.target.closest('tr');t&&open_(t.dataset.id)}};
+const opts=D.map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('');[['a','germany'],['b','portugal'],['c','unitedkingdom']].forEach(([i,v])=>{$('#'+i).innerHTML=opts;$('#'+i).value=v;$('#'+i).onchange=cmp});
+function cmp(){const it=D.find(r=>r.id=='italy'),S=[it,...['a','b','c'].map(i=>D.find(r=>r.id==$('#'+i).value))];$('#cmp').innerHTML=[['cit','Imposta società'],['pit_top','Persone, aliquota massima'],['vat','IVA/GST'],['wht_div','Ritenuta dividendi']].map(([k,t])=>{const mx=Math.max(1,...S.map(r=>r[k]||0));return `<div class="c st"><div class="m" style="margin-bottom:10px">${t}</div>${S.map((r,i)=>`<div style="display:flex;justify-content:space-between;font-size:14px"><span>${esc(r.name)}</span><span style="font:400 13px var(--mo)">${fmt(r[k])}</span></div><div class="tr"><div class="bar ${i?'':'it'}" style="width:${(r[k]||0)/mx*100}%"></div></div>`).join('')}</div>`}).join('')}
+function qc(){const m={};D.forEach(r=>r.flags.forEach(f=>{const k=f.replace(/\(\d[^)]*\)/g,'').replace(/\d+(\.\d+)?%/g,'').replace(/Edizione \d+/,'Edizione non 2026');(m[k]=m[k]||[]).push(r.name)}));const e=Object.entries(m).sort((a,b)=>b[1].length-a[1].length);
+const ok=D.length-fl;$('#qc').innerHTML=`<div class="kp"><div class="c"><div class="m">Schede controllate</div><div class="n">${D.length}</div></div><div class="c"><div class="m">Senza segnalazioni</div><div class="n">${ok}</div></div><div class="c"><div class="m">Da verificare</div><div class="n">${fl}</div></div><div class="c"><div class="m">Edizioni non 2026</div><div class="n">${old}</div></div></div><div class="tw"><table style="min-width:0"><thead><tr><th>Controllo</th><th>Casi</th></tr></thead><tbody>${e.map(([k,v])=>`<tr title="${esc(v.join(', '))}"><td>${esc(k)}<div class="src" style="margin:2px 0 0">${esc(v.slice(0,6).join(', '))}${v.length>6?' e altri '+(v.length-6):''}</div></td><td>${v.length}</td></tr>`).join('')}</tbody></table></div>`}
+document.querySelector('nav').onclick=e=>{const t=e.target.dataset.t;if(!t)return;document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t==t));['ex','co','qc','me'].forEach(s=>$('#'+s).hidden=s!=t)};
+draw();cmp();qc();
+</script></body></html>
